@@ -1,18 +1,20 @@
 import { IsArray, IsBoolean, IsNumber, IsOptional, IsPositive, 
     IsString, MinLength } from "class-validator";
 import { Location } from "../entities/location.entity";
+import { Character } from "../entities/character.entity";
 
-export class CreateCharacterDto {
+export class CreateLocationDto {
   
     @IsString()
     name: string;
 
-    @IsPositive()
+    @IsString()
+    type: string;
+    
     @IsNumber()
-    salary: number;
+    @IsPositive()
+    cost: number;
     
-    @IsBoolean()
-    employee: boolean;
-    
-}
+    owner: Character;
 
+}
