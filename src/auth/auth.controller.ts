@@ -16,7 +16,6 @@ export class AuthController {
   }
 
   @Get('token/:idToken')
-  @UseGuards(ApiTokenGuard)
   async getUserToken(
     @Param('idToken') idToken: string,
   ) {
@@ -24,7 +23,6 @@ export class AuthController {
   }
 
   @Patch('token/reduce/:idToken') 
-  @UseGuards(ApiTokenGuard)
   async reduceToken(
     @Param('idToken') idToken: string,
   ) {
