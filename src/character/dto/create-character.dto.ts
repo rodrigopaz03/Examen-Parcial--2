@@ -1,6 +1,5 @@
 import { IsArray, IsBoolean, IsNumber, IsOptional, IsPositive, 
     IsString, MinLength } from "class-validator";
-import { Location } from "../entities/location.entity";
 
 export class CreateCharacterDto {
   

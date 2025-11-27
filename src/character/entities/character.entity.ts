@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, JoinColumn, OneToOne, ManyToMany, JoinTable } from 'typeorm';
-import { Location } from './location.entity';
+import { Location } from 'src/location/entities/location.entity';
 
 @Entity()
 export class Character {
@@ -18,7 +18,7 @@ export class Character {
 
   @OneToOne(()=> Location, location => location.owner)
   @JoinColumn() 
-    property: Location; 
+  property: Location; 
 
   @ManyToMany(()=> Location, location=> location.favCharacters)
   @JoinTable() 

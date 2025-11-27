@@ -8,7 +8,7 @@ import { ApiTokenGuard } from './api-token.guard';
 @Module({
   imports: [TypeOrmModule.forFeature([Token])],
   controllers: [AuthController],
-  providers: [AuthService, ApiTokenGuard],
-  exports: [TypeOrmModule, ApiTokenGuard],
+  providers: [AuthService,  AuthService,  ApiTokenGuard],
+  exports: [TypeOrmModule,  AuthService,  ApiTokenGuard],
 })
 export class AuthModule {}

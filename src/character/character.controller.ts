@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {Body, Controller, Get, Param, Patch, Post, UseGuards,} from '@nestjs/common';
 import { CharacterService } from './character.service';
 import { CreateCharacterDto } from './dto/create-character.dto';
-import { UpdateCharacterDto } from './dto/update-character.dto';
+import { ApiTokenGuard } from '../auth/api-token.guard';
 
+@UseGuards(ApiTokenGuard)
 @Controller('character')
 export class CharacterController {
   constructor(private readonly characterService: CharacterService) {}
@@ -12,23 +13,16 @@ export class CharacterController {
     return this.characterService.create(createCharacterDto);
   }
 
-  @Get()
-  findAll() {
-    return this.characterService.findAll();
+  @Patch(':id/favorites/:locationId')
+  addFavorite(
+    @Param('id') id: string,
+    @Param('locationId') locationId: string,
+  ) {
+    return this.characterService.addFavorite(id, locationId);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.characterService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCharacterDto: UpdateCharacterDto) {
-    return this.characterService.update(+id, updateCharacterDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.characterService.remove(+id);
+  @Get(':id/taxes')
+  getTaxes(@Param('id') id: string) {
+    return this.characterService.calculateTaxes(id);
   }
 }

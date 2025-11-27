@@ -4,25 +4,25 @@ import { UpdateAuthDto } from './dto/update-auth.dto';
 import { ApiTokenGuard } from './api-token.guard';
 
 
-@Controller('auth')
+@Controller('token')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('token')
+  @Post()
   async createToken(
     @Body('maxRequests') maxRequests: number,
   ) {
     return this.authService.createToken(maxRequests ?? 10);
   }
 
-  @Get('token/:idToken')
+  @Get(':idToken')
   async getUserToken(
     @Param('idToken') idToken: string,
   ) {
     return this.authService.getUserToken(idToken);
   }
 
-  @Patch('token/reduce/:idToken') 
+  @Patch('reduce/:idToken') 
   async reduceToken(
     @Param('idToken') idToken: string,
   ) {

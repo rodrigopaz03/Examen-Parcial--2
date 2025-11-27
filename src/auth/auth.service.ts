@@ -32,10 +32,10 @@ export class AuthService {
     return await this.tokenRepository.save(token);
   }
 
-  async ReduceToken(tokenId: string) {
+  async ReduceToken(tokenValue: string) {
 
     const token = await this.tokenRepository.findOne({
-      where: { id: tokenId},
+      where: { token: tokenValue },
     });
 
     if (token != null) { 
@@ -46,12 +46,12 @@ export class AuthService {
   }
 
 
-async getUserToken(tokenId: string){
+async getUserToken(tokenValue: string){
     
     const token = await this.tokenRepository.findOne({
-      where: { id: tokenId},
+      where: { token: tokenValue},
     });
-    if (token?.reqLeft! > 0 && token?.active) {
+    if (token && token.reqLeft! > 0 && token.active) {
       return true;
     } else {
       throw new UnauthorizedException('API token is inactive or has no requests left');

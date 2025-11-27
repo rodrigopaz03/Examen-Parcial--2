@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { LocationModule } from './location/location.module';
 import { CharacterModule } from './character/character.module';
 
 @Module({
@@ -20,7 +21,9 @@ import { CharacterModule } from './character/character.module';
       synchronize: true, // SOLO EN DESARROLLO
     }),
     AuthModule,
-    CharacterModule
+    CharacterModule,
+    LocationModule,
+
   ],
   controllers: [AppController],
   providers: [AppService],
